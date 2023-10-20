@@ -22,10 +22,10 @@ const control = {
     //this.votosEmitidos++;
     numVotos.textContent = (parseInt(numVotos.textContent) + 1).toString(); // 
 },
-  insertaVotado(nombre, vt = 0) { 
+  insertaVotado(nombre, vt =0) { 
     this.listaVotados.push({
       nombre: nombre,
-      votos: vt, // si vt etsa null o undifinde coge valor 0
+      votos: vt , // si vt etsa null o undifinde coge valor 0
     });
     const id = this.listaVotados.length - 1;
 
@@ -95,23 +95,21 @@ elimenar.addEventListener("click", (e) => {
 // imprimir los datos gurdados
 
 
-if (localStorage.getItem("lista") === null) {
-  console.log("nada");
-} else {
-  // recuperar la lista guardada
-  const listaGuardada = JSON.parse(localStorage.getItem("lista"));
-  console.log(listaGuardada)
-
-
-  //imprimir los datos a la pantalla 
-
-  for (let i = 0; i < listaGuardada.length; i++) {
-
-    control.insertaVotado(listaGuardada[i].nombre,listaGuardada[i].votos)
-    control.dameDelegado()
-  }
-
-  const totalvotos = listaGuardada.reduce((acc, el) => acc + el.votos, 0);
-  numVotos.textContent = totalvotos;
-
-}
+if (localStorage.getItem("lista") != null ) {
+   // recuperar la lista guardada
+   const listaGuardada = JSON.parse(localStorage.getItem("lista"));
+   console.log(listaGuardada)
+ 
+ 
+   //imprimir los datos a la pantalla 
+ 
+   for (let i = 0; i < listaGuardada.length; i++) {
+ 
+     control.insertaVotado(listaGuardada[i].nombre,listaGuardada[i].votos)
+     control.dameDelegado()
+   }
+ 
+   const totalvotos = listaGuardada.reduce((acc, el) => acc + el.votos, 0);
+   numVotos.textContent = totalvotos;
+ 
+} 
